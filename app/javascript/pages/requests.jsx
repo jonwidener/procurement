@@ -42,6 +42,14 @@ export default () => {
         format: 'js',
         authenticity_token: token,
       }),
+    }).then((response) => {
+      if (response.status == 200) {
+        const temp = [...requests];
+        temp.push({ itemName, cost, url });
+        setRequests(temp);
+      } else {
+        alert('No good!');
+      }
     });
   };
 
