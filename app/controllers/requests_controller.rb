@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.json { render :json => json_response }     
+      format.json { render json: json_response }
     end
   end
 
