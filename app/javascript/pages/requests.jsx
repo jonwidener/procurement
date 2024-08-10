@@ -55,14 +55,25 @@ export default () => {
 
   return (
     <>
+      <table className="table-auto w-full">
+        <thead>
+          <tr className="text-left">
+            <th>Name</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {requests.map((request, index) => (
+            <tr key={index}>
+              <td>
+                <a href={request.url}>{request.itemName}</a>
+              </td>
+              <td>${(+request.cost).toFixed(2)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <h1>Make a request</h1>
-      {requests.map((request, index) => (
-        <div className="flex space-x-4" key={index}>
-          <span>{request.itemName}</span>
-          <span>${request.cost}</span>
-          <span>{request.url}</span>
-        </div>
-      ))}
       <div>
         Item Name:{' '}
         <input name="item_name" value={itemName} onChange={handleChange} />
