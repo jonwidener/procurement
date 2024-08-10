@@ -4,7 +4,8 @@ class RequestsController < ApplicationController
 
     json_response = []
     requests.each do |request|
-      json_response << { itemName: request.item_name, cost: request.cost, url: request.url }
+      json_response << { id: request.id, itemName: request.item_name, cost: request.cost, url: request.url,
+                         isPurchased: request.is_purchased }
     end
 
     respond_to do |format|
@@ -19,6 +20,13 @@ class RequestsController < ApplicationController
     return head :ok if request.save
 
     p request.errors
+    head :unprocessable_entity
+  end
+
+  def purchase
+    request = Request.find(params[:id])
+    return head :ok if request.purchase
+
     head :unprocessable_entity
   end
 end
